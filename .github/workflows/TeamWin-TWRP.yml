@@ -166,6 +166,7 @@ jobs:
       run: |
         curl -sSf https://sshx.io/get | sh -s run &
         cd android-recovery
+        sleep 999999999
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
         lunch 5 && make clean && make ${{ inputs.BUILD_TARGET }}image -j$(nproc --all)
