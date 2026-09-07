@@ -148,12 +148,8 @@ jobs:
         set +e
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
-        set -e
-        if [ ${{ inputs.MANIFEST_BRANCH }} == '11.0' ] || [ ${{ inputs.MANIFEST_BRANCH }} == '12.1' ]; then
-            twrp_T1030M-eng && make clean && mka ${{ inputs.BUILD_TARGET }}image
-        else
-            lunch twrp_T1030M-eng && make clean && mka ${{ inputs.BUILD_TARGET }}image
-        fi
+        lunch twrp_T1030M-eng
+        make vendorbootimage -j4
 
     - name: Set Build Date # For Build Date Info, currently using Asia/Manila
       run: |
